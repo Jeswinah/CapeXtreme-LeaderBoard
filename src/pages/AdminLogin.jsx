@@ -64,7 +64,7 @@ export default function AdminLogin() {
             {status === 'loading' ? 'Signing in...' : 'Login'}
           </button>
         </form>
-        <a className="ghost-link" href="/user">
+        <a className="ghost-link" href="/">
           Back to leaderboard
         </a>
       </section>

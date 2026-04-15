@@ -91,7 +91,10 @@ npm run dev
 
 Update `.env` with your Supabase project URL and anon public key.
 
+## Vercel SPA routing
+Add a `vercel.json` rewrite so `/admin` and other routes work on refresh.
+
 ## Routes
-- `/user` - public leaderboard
+- `/` - public leaderboard
 - `/admin` - admin login
 - `/admin/dashboard` - admin tools

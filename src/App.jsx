@@ -8,11 +8,10 @@ function App() {
   return (
     <div className="app-shell">
       <Routes>
-        <Route path="/" element={<Navigate to="/user" replace />} />
-        <Route path="/user" element={<Leaderboard />} />
+        <Route path="/" element={<Leaderboard />} />
         <Route path="/admin" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
-        <Route path="*" element={<Navigate to="/user" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
   )
