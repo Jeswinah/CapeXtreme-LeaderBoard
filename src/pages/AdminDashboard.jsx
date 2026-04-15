@@ -144,6 +144,15 @@ export default function AdminDashboard() {
   }, [session, adminStatus])
 
   const gamesEmpty = useMemo(() => games.length === 0, [games])
+  const hasDuplicateScore = useMemo(() => {
+    if (!scoreForm.user_name || !scoreForm.game_id) return false
+    const normalizedName = scoreForm.user_name.trim().toLowerCase()
+    return scores.some(
+      (score) =>
+        score.game_id === scoreForm.game_id &&
+        score.user_name?.trim().toLowerCase() === normalizedName,
+    )
+  }, [scoreForm.user_name, scoreForm.game_id, scores])
 
   const handleGameChange = (event) => {
     const { name, value } = event.target
@@ -180,6 +189,11 @@ export default function AdminDashboard() {
     setError('')
 
     try {
+      if (hasDuplicateScore) {
+        setError('Score already recorded for this team and game.')
+        return
+      }
+
       const selectedGame = games.find((game) => game.id === scoreForm.game_id)
       if (!selectedGame) {
         setError('Please select a valid game.')
@@ -198,6 +212,8 @@ export default function AdminDashboard() {
         marks: marksValue,
       }
       await createScore(payload)
+      const refreshedScores = await fetchScores()
+      setScores(refreshedScores || [])
       setScoreForm({ user_name: '', game_id: '', marks: '' })
       setNotice('Score recorded.')
     } catch (err) {
@@ -498,8 +514,16 @@ export default function AdminDashboard() {
                 placeholder="78"
               />
             </label>
-            <button className="btn" type="submit" disabled={gamesEmpty}>
-              {gamesEmpty ? 'Add a game first' : 'Record score'}
+            <button
+              className="btn"
+              type="submit"
+              disabled={gamesEmpty || hasDuplicateScore}
+            >
+              {gamesEmpty
+                ? 'Add a game first'
+                : hasDuplicateScore
+                  ? 'Score already recorded'
+                  : 'Record score'}
             </button>
           </form>
         </section>
