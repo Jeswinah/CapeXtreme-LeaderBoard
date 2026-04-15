@@ -127,7 +127,7 @@ export default function Leaderboard() {
         </div>
         <div className="hero-metrics">
           <div>
-            <span>Team Name</span>
+            <span>Teams </span>
             <strong>{summary.totalPlayers}</strong>
           </div>
           <div>
