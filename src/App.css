@@ -135,13 +135,21 @@
 
 .table-row {
   display: grid;
-  grid-template-columns: 1.3fr 1.2fr 0.7fr 0.7fr 0.8fr;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
   align-items: center;
   padding: 14px 16px;
   border-radius: 16px;
   background: var(--surface-strong);
   border: 1px solid transparent;
+}
+
+.table.table-total .table-row {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.table.table-game .table-row {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .table-row:nth-child(odd) {
@@ -366,8 +374,16 @@ select {
 }
 
 @media (max-width: 900px) {
+  .hero-card {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .table-row {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     row-gap: 10px;
   }
 
@@ -380,5 +396,33 @@ select {
   .leaderboard-header {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .page {
+    gap: 20px;
+  }
+
+  .hero-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .tab-list {
+    width: 100%;
+  }
+
+  .tab {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .table-row {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 8px;
+  }
+
+  .table-head {
+    display: none;
   }
 }

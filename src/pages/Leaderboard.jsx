@@ -176,7 +176,7 @@ export default function Leaderboard() {
         )}
 
         {status === 'ready' && rows.length > 0 && activeTab === 'total' && (
-          <div className="table">
+          <div className="table table-total">
             <div className="table-row table-head">
               <span>Player</span>
               <span>Games</span>
@@ -186,7 +186,7 @@ export default function Leaderboard() {
               <div className="table-row" key={entry.user_name}>
                 <span className="player">
                   {entry.user_name}
-                  {entry.rank === 1 ? <em>Top</em> : null}
+    
                 </span>
                 <span>{entry.games}</span>
                 <span className="score">{entry.totalScore} pts</span>
@@ -196,12 +196,11 @@ export default function Leaderboard() {
         )}
 
         {status === 'ready' && rows.length > 0 && activeTab !== 'total' && (
-          <div className="table">
+          <div className="table table-game">
             <div className="table-row table-head">
               <span>Player</span>
               <span>Score</span>
               <span>Total</span>
-              <span>Date</span>
             </div>
             {gameRows.map((row) => (
               <div className="table-row" key={row.id}>
@@ -211,7 +210,6 @@ export default function Leaderboard() {
                 </span>
                 <span className="score">{row.marks} pts</span>
                 <span>{row.total_marks} pts</span>
-                <span>{formatDate(row.created_at)}</span>
               </div>
             ))}
           </div>
