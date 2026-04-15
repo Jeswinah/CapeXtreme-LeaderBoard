@@ -127,7 +127,7 @@ export default function Leaderboard() {
         </div>
         <div className="hero-metrics">
           <div>
-            <span>Players</span>
+            <span>Team Name</span>
             <strong>{summary.totalPlayers}</strong>
           </div>
           <div>
@@ -178,17 +178,17 @@ export default function Leaderboard() {
         {status === 'ready' && rows.length > 0 && activeTab === 'total' && (
           <div className="table table-total">
             <div className="table-row table-head">
-              <span className="rank">#</span>
-              <span>Player</span>
-              <span>Games</span>
-              <span>Total Score</span>
+              <span className="rank he">#</span>
+              <span className='he'>Team Name</span>
+              <span className='he'>Games</span>
+              <span className='he'>Total Score</span>
             </div>
             {totals.map((entry) => (
               <div
                 className={`table-row rank-${entry.rank}`}
                 key={entry.user_name}
               >
-                <span className="rank">{entry.rank}</span>
+                <span className="rank ">{entry.rank}</span>
                 <span className="player">
                   {entry.user_name}
                 </span>
@@ -202,10 +202,10 @@ export default function Leaderboard() {
         {status === 'ready' && rows.length > 0 && activeTab !== 'total' && (
           <div className="table table-game">
             <div className="table-row table-head">
-              <span className="rank">#</span>
-              <span>Player</span>
-              <span>Score</span>
-              <span>Total</span>
+              <span className="rank he">#</span>
+              <span className='he'>Team Name</span>
+              <span className='he'>Score</span>
+              <span className='he'>Total</span>
             </div>
             {gameRows.map((row) => (
               <div
@@ -218,7 +218,7 @@ export default function Leaderboard() {
                  
                 </span>
                 <span className="score">{row.marks} pts</span>
-                <span>{row.total_marks} pts</span>
+                <span className='he'>{row.total_marks} pts</span>
               </div>
             ))}
           </div>
